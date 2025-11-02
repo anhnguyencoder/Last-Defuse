@@ -3,17 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
-    public string sceneToLoad;
+    public string winScene;
+    public string nextLevel;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            SceneManager.LoadScene(sceneToLoad);
+            // Save current level info and next level before loading win scene
+            string currentLevel = SceneManager.GetActiveScene().name;
+            LevelManager.SetCurrentLevel(currentLevel);
+            LevelManager.SetNextLevel(nextLevel);
 
-            AudioManager.instance.PlayLevelMusic();
+            // Unlock next level when player completes current level
+            if (!string.IsNullOrEmpty(nextLevel))
+            {
+                LevelManager.UnlockLevel(nextLevel);
+                Debug.Log("Unlocked level: " + nextLevel + " after completing: " + currentLevel);
+            }
 
-
+            // Load win scene when player completes the level
+            SceneManager.LoadScene(winScene);
 
             AudioManager.instance.PlaySFX(3);
         }

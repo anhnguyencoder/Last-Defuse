@@ -20,6 +20,8 @@ public class UIController : MonoBehaviour
 
     public string mainMenuScene;
 
+    public string levelSelectionScene;
+
     public GameObject pauseScreen;
 
     public InputActionReference pauseAction;
@@ -55,7 +57,10 @@ public class UIController : MonoBehaviour
 
     public void ShowDeathScreen()
     {
-        deathScreen.SetActive(true);
+        if(deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+        }
 
         Cursor.lockState = CursorLockMode.None;
     }
@@ -64,12 +69,21 @@ public class UIController : MonoBehaviour
     {
         //Debug.Log("Restarting");
 
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(mainMenuScene);
+
+        Time.timeScale = 1f;
+    }
+
+    public void GoToLevelSelection()
+    {
+        SceneManager.LoadScene(levelSelectionScene);
 
         Time.timeScale = 1f;
     }

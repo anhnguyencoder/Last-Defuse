@@ -2636,6 +2636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6773789301829194158, guid: 79c70331e11e08c4795bdfd23425967a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7941451414919735033, guid: 79c70331e11e08c4795bdfd23425967a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8232,6 +8236,14 @@ PrefabInstance:
     - target: {fileID: 2124106102600719255, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499089766232708863, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
+      propertyPath: winScene
+      value: Win Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499089766232708863, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
+      propertyPath: nextLevel
+      value: Boss Arena
       objectReference: {fileID: 0}
     - target: {fileID: 5499089766232708863, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
       propertyPath: sceneToLoad

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string firstLevel;
+    public string levelSelectionScene;
 
     private void Start()
     {
@@ -12,9 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(firstLevel);
-
-        AudioManager.instance.PlayLevelMusic();
+        SceneManager.LoadScene(levelSelectionScene);
     }
 
     public void QuitGame()
