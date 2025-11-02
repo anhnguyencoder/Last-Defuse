@@ -24,6 +24,8 @@ public class UIController : MonoBehaviour
 
     public InputActionReference pauseAction;
 
+    public SettingsPanel settingsPanel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -94,6 +96,20 @@ public class UIController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             Time.timeScale = 1f;
+        }
+        
+        // Close settings panel if open
+        if (settingsPanel != null && settingsPanel.settingsPanel != null && settingsPanel.settingsPanel.activeSelf)
+        {
+            settingsPanel.CloseSettings();
+        }
+    }
+
+    public void OpenSettings()
+    {
+        if (settingsPanel != null)
+        {
+            settingsPanel.OpenSettings();
         }
     }
 }
