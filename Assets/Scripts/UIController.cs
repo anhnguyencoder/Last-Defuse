@@ -20,13 +20,9 @@ public class UIController : MonoBehaviour
 
     public string mainMenuScene;
 
-    public string levelSelectionScene;
-
     public GameObject pauseScreen;
 
     public InputActionReference pauseAction;
-
-    public SettingsPanel settingsPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,10 +53,7 @@ public class UIController : MonoBehaviour
 
     public void ShowDeathScreen()
     {
-        if(deathScreen != null)
-        {
-            deathScreen.SetActive(true);
-        }
+        deathScreen.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
     }
@@ -69,21 +62,12 @@ public class UIController : MonoBehaviour
     {
         //Debug.Log("Restarting");
 
-        Time.timeScale = 1f;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(mainMenuScene);
-
-        Time.timeScale = 1f;
-    }
-
-    public void GoToLevelSelection()
-    {
-        SceneManager.LoadScene(levelSelectionScene);
 
         Time.timeScale = 1f;
     }
@@ -110,20 +94,6 @@ public class UIController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             Time.timeScale = 1f;
-        }
-        
-        // Close settings panel if open
-        if (settingsPanel != null && settingsPanel.settingsPanel != null && settingsPanel.settingsPanel.activeSelf)
-        {
-            settingsPanel.CloseSettings();
-        }
-    }
-
-    public void OpenSettings()
-    {
-        if (settingsPanel != null)
-        {
-            settingsPanel.OpenSettings();
         }
     }
 }

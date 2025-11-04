@@ -131,12 +131,12 @@ public class SettingsPanel : MonoBehaviour
     
     private void UpdateAudioVolumes()
     {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.SetMasterVolume(masterVolume);
-            AudioManager.instance.SetMusicVolume(musicVolume);
-            AudioManager.instance.SetSFXVolume(sfxVolume);
-        }
+        //if (AudioManager.instance != null)
+        //{
+        //    AudioManager.instance.SetMasterVolume(masterVolume);
+        //    AudioManager.instance.SetMusicVolume(musicVolume);
+        //    AudioManager.instance.SetSFXVolume(sfxVolume);
+        //}
     }
 }
 

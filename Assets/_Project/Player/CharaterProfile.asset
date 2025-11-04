@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5413e1e8ae24b89a76167139e75224b, type: 3}
+  m_Name: CharaterProfile
+  m_EditorClassIdentifier: 
+  movementData: {fileID: 11400000, guid: 606c9aee0b764cc40aa63526098fdbc5, type: 2}
+  combatData: {fileID: 11400000, guid: adbf8417317138b48b127ecc14b9ef0a, type: 2}
+  healthData: {fileID: 11400000, guid: c8b0cce20fa6a57448896e198e39c5d7, type: 2}

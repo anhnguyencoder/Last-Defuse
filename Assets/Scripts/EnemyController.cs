@@ -55,6 +55,9 @@ public class EnemyController : MonoBehaviour
         shotCounter = timeBetweenShots;
 
         currentHealth = startingHealth;
+        
+        if (theRB == null)
+            theRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
