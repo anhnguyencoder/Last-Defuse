@@ -10,6 +10,12 @@ public class LevelExit : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            // Dừng timer khi player thắng
+            if (CountdownTimer.instance != null)
+            {
+                CountdownTimer.instance.StopTimer();
+            }
+
             // Save current level info and next level before loading win scene
             string currentLevel = SceneManager.GetActiveScene().name;
             LevelManager.SetCurrentLevel(currentLevel);

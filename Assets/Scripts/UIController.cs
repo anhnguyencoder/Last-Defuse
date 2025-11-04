@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
 
     public TMP_Text healthText;
 
+    public TMP_Text timerText;
+
     public GameObject deathScreen;
 
     public string mainMenuScene;
@@ -53,6 +55,30 @@ public class UIController : MonoBehaviour
     public void UpdateHealthText(float currentHealth)
     {
         healthText.text = "Health: " + Mathf.RoundToInt(currentHealth);
+    }
+
+    public void UpdateTimerText(float timeRemaining)
+    {
+        if (timerText != null)
+        {
+            int minutes = Mathf.FloorToInt(timeRemaining / 60f);
+            int seconds = Mathf.FloorToInt(timeRemaining % 60f);
+            timerText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+            
+            // Đổi màu khi thời gian sắp hết (dưới 10 giây)
+            if (timeRemaining <= 10f)
+            {
+                timerText.color = Color.red;
+            }
+            else if (timeRemaining <= 30f)
+            {
+                timerText.color = Color.yellow;
+            }
+            else
+            {
+                timerText.color = Color.white;
+            }
+        }
     }
 
     public void ShowDeathScreen()
