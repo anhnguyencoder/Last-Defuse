@@ -56,6 +56,9 @@ public class PlayerUnitFrame : MonoBehaviour
         // Load saved username from PlayerPrefs
         playerUsername = PlayerPrefs.GetString("PlayerUsername", "USERNAME");
         
+        // Load saved avatar (will be set by SettingsPanel if exists)
+        // Avatar is loaded when SettingsPanel initializes
+        
         // Set initial values
         UpdateUsername();
         UpdateLevelFromScene();

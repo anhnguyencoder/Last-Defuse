@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class SettingsPanel : MonoBehaviour
 {
@@ -27,12 +28,29 @@ public class SettingsPanel : MonoBehaviour
     public TMP_InputField usernameInputField; // Input field để nhập username
     public Button usernameDoneButton; // Nút Done để lưu username
     
+    // Avatar selection settings
+    [System.Serializable]
+    public class AvatarOption
+    {
+        public Button avatarButton; // Button để click chọn avatar (chứa toàn bộ avatar structure)
+        public Sprite avatarSprite; // Sprite của avatar
+        public Image checkmark; // Dấu tích màu xanh (hiển thị khi được chọn)
+        
+        // Cached components (tự động tìm, không cần gán)
+        [System.NonSerialized]
+        public Image avatarImage; // Image hiển thị avatar sprite (tự động tìm)
+    }
+    
+    public TMP_Text avatarLabel; // Label "Avatar:" hoặc "Select Avatar:"
+    public List<AvatarOption> avatarOptions = new List<AvatarOption>(); // Danh sách các avatar options
+    
     public Button closeButton;
     
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
     private string currentUsername = "USERNAME";
     private string savedUsername = "USERNAME";
+    private int selectedAvatarIndex = 0; // Index của avatar đã chọn (0-4)
     
     private void Start()
     {
@@ -44,8 +62,14 @@ public class SettingsPanel : MonoBehaviour
         savedUsername = PlayerPrefs.GetString("PlayerUsername", "USERNAME");
         currentUsername = savedUsername;
         
+        // Load saved avatar index from PlayerPrefs
+        selectedAvatarIndex = PlayerPrefs.GetInt("SelectedAvatarIndex", 0);
+        
         // Initialize username input field
         InitializeUsernameField();
+        
+        // Initialize avatar selection
+        InitializeAvatarSelection();
         
         // Set slider values and listeners
         if (musicVolumeSlider != null)
@@ -162,6 +186,135 @@ public class SettingsPanel : MonoBehaviour
         }
     }
     
+    private void InitializeAvatarSelection()
+    {
+        // Set avatar label text
+        if (avatarLabel != null)
+        {
+            avatarLabel.text = "Avatar:";
+        }
+        
+        // Setup button listeners và initialize avatars
+        for (int i = 0; i < avatarOptions.Count; i++)
+        {
+            int index = i; // Capture index for lambda
+            AvatarOption option = avatarOptions[i];
+            
+            // Auto-find Avatar Image component trong children của button
+            if (option.avatarButton != null)
+            {
+                // Tìm Avatar Image trong children (có thể nằm trong Mask Container)
+                option.avatarImage = FindAvatarImageInChildren(option.avatarButton.transform);
+                
+                // Setup button click listener
+                option.avatarButton.onClick.AddListener(() => SelectAvatar(index));
+            }
+            
+            // Set avatar sprite
+            if (option.avatarImage != null && option.avatarSprite != null)
+            {
+                option.avatarImage.sprite = option.avatarSprite;
+            }
+            
+            // Hide checkmark initially
+            if (option.checkmark != null)
+            {
+                option.checkmark.gameObject.SetActive(false);
+            }
+        }
+        
+        // Show selected avatar
+        UpdateAvatarSelection();
+        
+        // Apply saved avatar to PlayerUnitFrame
+        ApplySelectedAvatar();
+    }
+    
+    private Image FindAvatarImageInChildren(Transform parent)
+    {
+        // Tìm Image component có tên chứa "Avatar" và "Image" (không phải Background, Mask, Overlay)
+        foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+        {
+            Image img = child.GetComponent<Image>();
+            if (img != null)
+            {
+                string name = child.name.ToLower();
+                // Tìm Image có tên chứa "avatar" và "image" nhưng không phải background, mask, overlay
+                if (name.Contains("avatar") && name.Contains("image") && 
+                    !name.Contains("background") && !name.Contains("mask") && !name.Contains("overlay"))
+                {
+                    return img;
+                }
+            }
+        }
+        
+        // Nếu không tìm thấy, tìm Image đầu tiên trong children (ngoại trừ checkmark)
+        foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+        {
+            Image img = child.GetComponent<Image>();
+            if (img != null && !img.name.ToLower().Contains("checkmark"))
+            {
+                // Kiểm tra xem có phải là Image trong Mask Container không
+                if (child.parent != null && child.parent.GetComponent<Mask>() != null)
+                {
+                    return img;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    private void SelectAvatar(int index)
+    {
+        if (index >= 0 && index < avatarOptions.Count)
+        {
+            selectedAvatarIndex = index;
+            
+            // Save to PlayerPrefs
+            PlayerPrefs.SetInt("SelectedAvatarIndex", selectedAvatarIndex);
+            PlayerPrefs.Save();
+            
+            // Update UI
+            UpdateAvatarSelection();
+            
+            // Update PlayerUnitFrame
+            ApplySelectedAvatar();
+        }
+    }
+    
+    private void UpdateAvatarSelection()
+    {
+        // Update checkmarks for all avatars
+        for (int i = 0; i < avatarOptions.Count; i++)
+        {
+            AvatarOption option = avatarOptions[i];
+            
+            if (option.checkmark != null)
+            {
+                // Show checkmark only for selected avatar
+                option.checkmark.gameObject.SetActive(i == selectedAvatarIndex);
+            }
+        }
+    }
+    
+    private void ApplySelectedAvatar()
+    {
+        if (selectedAvatarIndex >= 0 && selectedAvatarIndex < avatarOptions.Count)
+        {
+            AvatarOption selectedOption = avatarOptions[selectedAvatarIndex];
+            
+            // Update PlayerUnitFrame if exists
+            if (UIController.instance != null && UIController.instance.playerUnitFrame != null)
+            {
+                if (selectedOption.avatarSprite != null)
+                {
+                    UIController.instance.playerUnitFrame.SetAvatar(selectedOption.avatarSprite);
+                }
+            }
+        }
+    }
+    
     public void OpenSettings()
     {
         if (settingsPanel != null)
@@ -180,6 +333,9 @@ public class SettingsPanel : MonoBehaviour
             {
                 usernameDoneButton.gameObject.SetActive(false);
             }
+            
+            // Update avatar selection display
+            UpdateAvatarSelection();
         }
     }
     
