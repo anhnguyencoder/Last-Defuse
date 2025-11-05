@@ -17,7 +17,6 @@ public class PlayerHealthController : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        UIController.instance.UpdateHealthText(currentHealth);
         UpdateUnitFrame();
     }
 
@@ -41,7 +40,6 @@ public class PlayerHealthController : MonoBehaviour
             AudioManager.instance.PlaySFX(7);
         }
 
-        UIController.instance.UpdateHealthText(currentHealth);
         UpdateUnitFrame();
     }
 
@@ -54,7 +52,6 @@ public class PlayerHealthController : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        UIController.instance.UpdateHealthText(currentHealth);
         UpdateUnitFrame();
     }
     

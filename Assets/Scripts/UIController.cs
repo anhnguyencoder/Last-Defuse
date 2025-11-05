@@ -14,8 +14,6 @@ public class UIController : MonoBehaviour
 
     public TMP_Text ammoText, remainingAmmoText;
 
-    public TMP_Text healthText;
-
     public TMP_Text timerText;
 
     public GameObject deathScreen;
@@ -52,11 +50,6 @@ public class UIController : MonoBehaviour
         ammoText.text = currentAmmo.ToString();
 
         remainingAmmoText.text = "/" + remainingAmmo.ToString();
-    }
-
-    public void UpdateHealthText(float currentHealth)
-    {
-        healthText.text = "Health: " + Mathf.RoundToInt(currentHealth);
     }
 
     public void UpdateTimerText(float timeRemaining)
