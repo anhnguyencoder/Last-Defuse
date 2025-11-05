@@ -315,6 +315,30 @@ public class SettingsPanel : MonoBehaviour
         }
     }
     
+    // Public method để lấy avatar sprite đã lưu (để UIController có thể gọi)
+    public Sprite GetSavedAvatarSprite()
+    {
+        // Load saved avatar index từ PlayerPrefs
+        int savedIndex = PlayerPrefs.GetInt("SelectedAvatarIndex", 0);
+        
+        if (savedIndex >= 0 && savedIndex < avatarOptions.Count)
+        {
+            AvatarOption selectedOption = avatarOptions[savedIndex];
+            if (selectedOption != null && selectedOption.avatarSprite != null)
+            {
+                return selectedOption.avatarSprite;
+            }
+        }
+        
+        return null;
+    }
+    
+    // Public method để apply avatar đã lưu (để UIController có thể gọi)
+    public void ApplySavedAvatar()
+    {
+        ApplySelectedAvatar();
+    }
+    
     public void OpenSettings()
     {
         if (settingsPanel != null)

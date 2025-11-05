@@ -33,7 +33,49 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Load avatar ngay khi khởi động
+        LoadSavedAvatar();
+    }
+    
+    // Load avatar đã lưu từ PlayerPrefs
+    private void LoadSavedAvatar()
+    {
+        if (playerUnitFrame == null)
+        {
+            return;
+        }
         
+        // Nếu có settingsPanel, lấy avatar sprite từ đó
+        if (settingsPanel != null)
+        {
+            Sprite savedAvatarSprite = settingsPanel.GetSavedAvatarSprite();
+            if (savedAvatarSprite != null)
+            {
+                playerUnitFrame.SetAvatar(savedAvatarSprite);
+                return;
+            }
+        }
+        
+        // Nếu settingsPanel chưa khởi tạo xong, thử load lại sau một frame
+        if (settingsPanel != null)
+        {
+            StartCoroutine(LoadAvatarDelayed());
+        }
+    }
+    
+    // Coroutine để load avatar sau khi SettingsPanel đã khởi tạo xong
+    private System.Collections.IEnumerator LoadAvatarDelayed()
+    {
+        yield return null; // Đợi một frame để SettingsPanel.Start() chạy xong
+        
+        if (settingsPanel != null && playerUnitFrame != null)
+        {
+            Sprite savedAvatarSprite = settingsPanel.GetSavedAvatarSprite();
+            if (savedAvatarSprite != null)
+            {
+                playerUnitFrame.SetAvatar(savedAvatarSprite);
+            }
+        }
     }
 
     // Update is called once per frame
