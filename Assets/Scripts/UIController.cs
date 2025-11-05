@@ -100,6 +100,20 @@ public class UIController : MonoBehaviour
     {
         if (timerText != null)
         {
+            // Đảm bảo không bao giờ hiển thị số âm - nếu <= 0 thì hiển thị 00:00
+            if (timeRemaining <= 0f)
+            {
+                timerText.text = "00:00";
+                timerText.color = Color.red;
+                
+                // Đổi màu icon cùng với text
+                if (timerIcon != null)
+                {
+                    timerIcon.color = Color.red;
+                }
+                return;
+            }
+            
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
             // Bỏ chữ "Time:" - chỉ hiển thị thời gian
