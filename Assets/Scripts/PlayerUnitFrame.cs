@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class PlayerUnitFrame : MonoBehaviour
 {
@@ -22,7 +24,9 @@ public class PlayerUnitFrame : MonoBehaviour
     
     [Header("Settings")]
     public string playerUsername = "USERNAME";
-    public int playerLevel = 60;
+    [Tooltip("Nếu true, sẽ tự động lấy level từ tên scene. Nếu false, sẽ dùng playerLevel")]
+    public bool autoDetectLevel = true;
+    public int playerLevel = 60; // Dùng khi autoDetectLevel = false
     
     [Header("Health Bar Animation")]
     [Tooltip("Tốc độ animation của thanh máu (càng cao càng nhanh)")]
@@ -51,7 +55,7 @@ public class PlayerUnitFrame : MonoBehaviour
         
         // Set initial values
         UpdateUsername();
-        UpdateLevel();
+        UpdateLevelFromScene();
         UpdateHealthBar();
     }
     
@@ -96,6 +100,46 @@ public class PlayerUnitFrame : MonoBehaviour
         {
             levelText.text = playerLevel.ToString();
         }
+    }
+    
+    private void UpdateLevelFromScene()
+    {
+        if (autoDetectLevel)
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            int detectedLevel = ExtractLevelNumber(sceneName);
+            
+            if (detectedLevel > 0)
+            {
+                playerLevel = detectedLevel;
+            }
+        }
+        
+        UpdateLevel();
+    }
+    
+    private int ExtractLevelNumber(string sceneName)
+    {
+        // Pattern để tìm số trong tên scene (ví dụ: "Level 1" -> 1, "Level 2" -> 2, "Test 1" -> 1)
+        // Tìm số đầu tiên trong tên scene
+        Match match = Regex.Match(sceneName, @"\d+");
+        
+        if (match.Success)
+        {
+            if (int.TryParse(match.Value, out int levelNumber))
+            {
+                return levelNumber;
+            }
+        }
+        
+        // Xử lý các trường hợp đặc biệt
+        if (sceneName.Contains("Boss Arena") || sceneName.Contains("Boss"))
+        {
+            return 99; // Hoặc giá trị đặc biệt cho boss
+        }
+        
+        // Nếu không tìm thấy số, trả về 0 hoặc giá trị mặc định
+        return 0;
     }
     
     private void UpdateHealthBar()
