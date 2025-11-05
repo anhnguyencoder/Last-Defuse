@@ -6,34 +6,34 @@ public class SettingsPanel : MonoBehaviour
 {
     public GameObject settingsPanel;
     
-    public Slider masterVolumeSlider;
+    // Volume sliders
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
     
-    public TMP_Text masterVolumeText;
+    // Volume toggle buttons
+    public Button musicVolumeButton;
+    public Button sfxVolumeButton;
+    
+    // Mute overlay images (diagonal slash) - assign these in Unity Inspector
+    public Image musicMuteOverlay;
+    public Image sfxMuteOverlay;
+    
+    // Text labels
     public TMP_Text musicVolumeText;
     public TMP_Text sfxVolumeText;
     
     public Button closeButton;
     
-    private float masterVolume = 1f;
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
     
     private void Start()
     {
         // Load saved volumes from PlayerPrefs
-        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
         
-        // Set slider values
-        if (masterVolumeSlider != null)
-        {
-            masterVolumeSlider.value = masterVolume;
-            masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
-        }
-        
+        // Set slider values and listeners
         if (musicVolumeSlider != null)
         {
             musicVolumeSlider.value = musicVolume;
@@ -45,6 +45,21 @@ public class SettingsPanel : MonoBehaviour
             sfxVolumeSlider.value = sfxVolume;
             sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
         }
+        
+        // Set button listeners
+        if (musicVolumeButton != null)
+        {
+            musicVolumeButton.onClick.AddListener(ToggleMusicVolume);
+        }
+        
+        if (sfxVolumeButton != null)
+        {
+            sfxVolumeButton.onClick.AddListener(ToggleSFXVolume);
+        }
+        
+        // Update button visuals and text
+        UpdateButtonVisuals();
+        UpdateVolumeTexts();
         
         // Update audio manager
         UpdateAudioVolumes();
@@ -78,20 +93,12 @@ public class SettingsPanel : MonoBehaviour
         }
     }
     
-    private void OnMasterVolumeChanged(float value)
-    {
-        masterVolume = value;
-        UpdateMasterVolumeText();
-        UpdateAudioVolumes();
-        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
-        PlayerPrefs.Save();
-    }
-    
     private void OnMusicVolumeChanged(float value)
     {
         musicVolume = value;
-        UpdateMusicVolumeText();
         UpdateAudioVolumes();
+        UpdateButtonVisuals();
+        UpdateMusicVolumeText();
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.Save();
     }
@@ -99,18 +106,94 @@ public class SettingsPanel : MonoBehaviour
     private void OnSFXVolumeChanged(float value)
     {
         sfxVolume = value;
-        UpdateSFXVolumeText();
         UpdateAudioVolumes();
+        UpdateButtonVisuals();
+        UpdateSFXVolumeText();
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
         PlayerPrefs.Save();
     }
     
-    private void UpdateMasterVolumeText()
+    private void ToggleMusicVolume()
     {
-        if (masterVolumeText != null)
+        // Toggle between 0 and previous value (or 1 if was 0)
+        if (musicVolume > 0f)
         {
-            masterVolumeText.text = "Master Volume: " + Mathf.RoundToInt(masterVolume * 100) + "%";
+            // Save current volume before muting
+            if (musicVolumeSlider != null)
+            {
+                musicVolumeSlider.value = 0f;
+            }
+            else
+            {
+                musicVolume = 0f;
+                OnMusicVolumeChanged(0f);
+            }
         }
+        else
+        {
+            // Restore to 1f (or previous value if you want to save it)
+            if (musicVolumeSlider != null)
+            {
+                musicVolumeSlider.value = 1f;
+            }
+            else
+            {
+                musicVolume = 1f;
+                OnMusicVolumeChanged(1f);
+            }
+        }
+    }
+    
+    private void ToggleSFXVolume()
+    {
+        // Toggle between 0 and previous value (or 1 if was 0)
+        if (sfxVolume > 0f)
+        {
+            // Save current volume before muting
+            if (sfxVolumeSlider != null)
+            {
+                sfxVolumeSlider.value = 0f;
+            }
+            else
+            {
+                sfxVolume = 0f;
+                OnSFXVolumeChanged(0f);
+            }
+        }
+        else
+        {
+            // Restore to 1f (or previous value if you want to save it)
+            if (sfxVolumeSlider != null)
+            {
+                sfxVolumeSlider.value = 1f;
+            }
+            else
+            {
+                sfxVolume = 1f;
+                OnSFXVolumeChanged(1f);
+            }
+        }
+    }
+    
+    private void UpdateButtonVisuals()
+    {
+        // Show/hide mute overlay for music button
+        if (musicMuteOverlay != null)
+        {
+            musicMuteOverlay.gameObject.SetActive(musicVolume <= 0f);
+        }
+        
+        // Show/hide mute overlay for SFX button
+        if (sfxMuteOverlay != null)
+        {
+            sfxMuteOverlay.gameObject.SetActive(sfxVolume <= 0f);
+        }
+    }
+    
+    private void UpdateVolumeTexts()
+    {
+        UpdateMusicVolumeText();
+        UpdateSFXVolumeText();
     }
     
     private void UpdateMusicVolumeText()
@@ -133,7 +216,8 @@ public class SettingsPanel : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.SetMasterVolume(masterVolume);
+            // Keep master volume at 1f (removed from UI)
+            AudioManager.instance.SetMasterVolume(1f);
             AudioManager.instance.SetMusicVolume(musicVolume);
             AudioManager.instance.SetSFXVolume(sfxVolume);
         }
