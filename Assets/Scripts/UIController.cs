@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
     public TMP_Text ammoText, remainingAmmoText;
 
     public TMP_Text timerText;
+    public Image timerIcon; // Icon cạnh timer text
 
     public GameObject deathScreen;
 
@@ -100,20 +102,30 @@ public class UIController : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
-            timerText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+            // Bỏ chữ "Time:" - chỉ hiển thị thời gian
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             
             // Đổi màu khi thời gian sắp hết (dưới 10 giây)
+            Color textColor;
             if (timeRemaining <= 10f)
             {
-                timerText.color = Color.red;
+                textColor = Color.red;
             }
             else if (timeRemaining <= 30f)
             {
-                timerText.color = Color.yellow;
+                textColor = Color.yellow;
             }
             else
             {
-                timerText.color = Color.white;
+                textColor = Color.white;
+            }
+            
+            timerText.color = textColor;
+            
+            // Đổi màu icon cùng với text
+            if (timerIcon != null)
+            {
+                timerIcon.color = textColor;
             }
         }
     }
