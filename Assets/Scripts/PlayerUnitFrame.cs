@@ -53,6 +53,9 @@ public class PlayerUnitFrame : MonoBehaviour
             healthBarFill.fillAmount = currentFillAmount;
         }
         
+        // Load saved username from PlayerPrefs
+        playerUsername = PlayerPrefs.GetString("PlayerUsername", "USERNAME");
+        
         // Set initial values
         UpdateUsername();
         UpdateLevelFromScene();

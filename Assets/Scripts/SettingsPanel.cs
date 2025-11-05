@@ -22,16 +22,30 @@ public class SettingsPanel : MonoBehaviour
     public TMP_Text musicVolumeText;
     public TMP_Text sfxVolumeText;
     
+    // Username settings
+    public TMP_Text usernameLabel; // Label "User name:"
+    public TMP_InputField usernameInputField; // Input field để nhập username
+    public Button usernameDoneButton; // Nút Done để lưu username
+    
     public Button closeButton;
     
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
+    private string currentUsername = "USERNAME";
+    private string savedUsername = "USERNAME";
     
     private void Start()
     {
         // Load saved volumes from PlayerPrefs
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        
+        // Load saved username from PlayerPrefs
+        savedUsername = PlayerPrefs.GetString("PlayerUsername", "USERNAME");
+        currentUsername = savedUsername;
+        
+        // Initialize username input field
+        InitializeUsernameField();
         
         // Set slider values and listeners
         if (musicVolumeSlider != null)
@@ -57,6 +71,12 @@ public class SettingsPanel : MonoBehaviour
             sfxVolumeButton.onClick.AddListener(ToggleSFXVolume);
         }
         
+        // Done button listener
+        if (usernameDoneButton != null)
+        {
+            usernameDoneButton.onClick.AddListener(SaveUsername);
+        }
+        
         // Update button visuals and text
         UpdateButtonVisuals();
         UpdateVolumeTexts();
@@ -77,11 +97,89 @@ public class SettingsPanel : MonoBehaviour
         }
     }
     
+    private void InitializeUsernameField()
+    {
+        // Set username label text
+        if (usernameLabel != null)
+        {
+            usernameLabel.text = "User name:";
+        }
+        
+        // Initialize input field
+        if (usernameInputField != null)
+        {
+            usernameInputField.text = savedUsername;
+            usernameInputField.onValueChanged.AddListener(OnUsernameChanged);
+        }
+        
+        // Hide Done button initially
+        if (usernameDoneButton != null)
+        {
+            usernameDoneButton.gameObject.SetActive(false);
+        }
+    }
+    
+    private void OnUsernameChanged(string newValue)
+    {
+        currentUsername = newValue;
+        
+        // Show Done button if username changed from saved value
+        if (usernameDoneButton != null)
+        {
+            bool hasChanged = currentUsername != savedUsername && !string.IsNullOrEmpty(currentUsername);
+            usernameDoneButton.gameObject.SetActive(hasChanged);
+        }
+    }
+    
+    private void SaveUsername()
+    {
+        // Validate username (not empty)
+        if (string.IsNullOrEmpty(currentUsername) || string.IsNullOrWhiteSpace(currentUsername))
+        {
+            currentUsername = savedUsername; // Revert to saved value
+            if (usernameInputField != null)
+            {
+                usernameInputField.text = savedUsername;
+            }
+            return;
+        }
+        
+        // Save to PlayerPrefs
+        savedUsername = currentUsername;
+        PlayerPrefs.SetString("PlayerUsername", savedUsername);
+        PlayerPrefs.Save();
+        
+        // Update PlayerUnitFrame if exists
+        if (UIController.instance != null && UIController.instance.playerUnitFrame != null)
+        {
+            UIController.instance.playerUnitFrame.SetUsername(savedUsername);
+        }
+        
+        // Hide Done button
+        if (usernameDoneButton != null)
+        {
+            usernameDoneButton.gameObject.SetActive(false);
+        }
+    }
+    
     public void OpenSettings()
     {
         if (settingsPanel != null)
         {
             settingsPanel.SetActive(true);
+            
+            // Reset username field to saved value when opening settings
+            if (usernameInputField != null)
+            {
+                currentUsername = savedUsername;
+                usernameInputField.text = savedUsername;
+            }
+            
+            // Hide Done button when opening
+            if (usernameDoneButton != null)
+            {
+                usernameDoneButton.gameObject.SetActive(false);
+            }
         }
     }
     
