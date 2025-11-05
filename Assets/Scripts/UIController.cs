@@ -29,6 +29,8 @@ public class UIController : MonoBehaviour
     public InputActionReference pauseAction;
 
     public SettingsPanel settingsPanel;
+    
+    public PlayerUnitFrame playerUnitFrame;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

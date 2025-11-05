@@ -18,6 +18,7 @@ public class PlayerHealthController : MonoBehaviour
         currentHealth = maxHealth;
 
         UIController.instance.UpdateHealthText(currentHealth);
+        UpdateUnitFrame();
     }
 
     public void TakeDamage(float damageAmount)
@@ -41,6 +42,7 @@ public class PlayerHealthController : MonoBehaviour
         }
 
         UIController.instance.UpdateHealthText(currentHealth);
+        UpdateUnitFrame();
     }
 
     public void Heal(float healAmount)
@@ -53,5 +55,30 @@ public class PlayerHealthController : MonoBehaviour
         }
 
         UIController.instance.UpdateHealthText(currentHealth);
+        UpdateUnitFrame();
+    }
+    
+    private void UpdateUnitFrame()
+    {
+        if (UIController.instance != null)
+        {
+            if (UIController.instance.playerUnitFrame != null)
+            {
+                UIController.instance.playerUnitFrame.OnHealthChanged(currentHealth);
+            }
+            else
+            {
+                Debug.LogWarning("UIController.playerUnitFrame is NULL! Please assign PlayerUnitFrame in UIController Inspector.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("UIController.instance is NULL!");
+        }
+    }
+    
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }
