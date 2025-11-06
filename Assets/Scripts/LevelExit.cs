@@ -83,6 +83,16 @@ public class LevelExit : MonoBehaviour
 
     private void Update()
     {
+        // Kiểm tra nếu game bị pause - dừng warning sound
+        if (Time.timeScale == 0f)
+        {
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Pause();
+            }
+            return; // Không xử lý gì thêm khi pause
+        }
+
         // Kiểm tra timer và warning sound
         if (CountdownTimer.instance != null)
         {
@@ -103,6 +113,12 @@ public class LevelExit : MonoBehaviour
                     audioSource.Stop();
                 }
                 isWarningActive = false;
+            }
+            // Nếu game không bị pause và vẫn trong thời gian warning, tiếp tục phát nếu đã bị pause
+            else if (shouldPlayWarning && isWarningActive && audioSource != null && !audioSource.isPlaying && audioSource.time > 0f)
+            {
+                // Unpause nếu đã bị pause trước đó
+                audioSource.UnPause();
             }
 
             // Cập nhật volume dựa trên khoảng cách từ player (liên tục)
