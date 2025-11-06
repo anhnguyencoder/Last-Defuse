@@ -32,6 +32,8 @@ public class UIController : MonoBehaviour
     
     public PlayerUnitFrame playerUnitFrame;
 
+    public EnemyKillDisplay enemyKillDisplay;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -213,6 +215,14 @@ public class UIController : MonoBehaviour
         if (settingsPanel != null)
         {
             settingsPanel.OpenSettings();
+        }
+    }
+
+    public void UpdateKillCount(int killCount)
+    {
+        if (enemyKillDisplay != null)
+        {
+            enemyKillDisplay.UpdateKillCount(killCount);
         }
     }
 }

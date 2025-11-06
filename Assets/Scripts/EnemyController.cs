@@ -203,6 +203,12 @@ public class EnemyController : MonoBehaviour
             theRB.isKinematic = true;
 
             GetComponent<Collider>().enabled = false;
+
+            // Tăng số enemy bị tiêu diệt
+            if (KillTracker.instance != null)
+            {
+                KillTracker.instance.AddKill();
+            }
         }
     }
 }
