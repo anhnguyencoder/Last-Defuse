@@ -24,10 +24,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 4.unity
     guid: eb9ea8864d45ac04ba6d0b6f8fb2f9fc
   - enabled: 1
-    path: Assets/Scenes/Level 5.unity
+    path: Assets/Scenes/Level.unity
     guid: fb0cb6fb005918c4e9c94077bf196444
   - enabled: 1
-    path: Assets/Scenes/Level 6.unity
+    path: Assets/Scenes/Level 5.unity
     guid: 7053ff320149fda4b9bb8ad9dc56d5b8
   - enabled: 1
     path: Assets/Scenes/Level 7.unity
@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 10.unity
     guid: 31191823f44bfd6458edac219764203b
   - enabled: 1
-    path: Assets/Scenes/Boss Arena.unity
+    path: Assets/Scenes/Level 6.unity
     guid: 5fb6668910705dc488e6e068785f0328
   - enabled: 1
     path: Assets/Scenes/Win Screen.unity
