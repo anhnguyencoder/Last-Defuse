@@ -18,8 +18,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public AudioSource titleMusic, levelMusic, bossMusic, winMusic;
+    [Header("Cài Đặt Nhạc Nền")]
+    [Tooltip("AudioSource cho nhạc title/main menu")]
+    public AudioSource titleMusic;
+    [Tooltip("AudioSource cho nhạc level bình thường")]
+    public AudioSource levelMusic;
+    [Tooltip("AudioSource cho nhạc boss")]
+    public AudioSource bossMusic;
+    [Tooltip("AudioSource cho nhạc thắng")]
+    public AudioSource winMusic;
 
+    [Header("Cài Đặt SFX")]
+    [Tooltip("Mảng các AudioSource cho sound effects")]
     public AudioSource[] sfx;
 
     public void StopMusic()

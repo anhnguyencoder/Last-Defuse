@@ -4,8 +4,9 @@ public class CountdownTimer : MonoBehaviour
 {
     public static CountdownTimer instance;
 
-    [Header("Timer Settings")]
-    public float timeLimit = 60f; // Thời gian đếm ngược (giây) - có thể set khác nhau cho mỗi level
+    [Header("Cài Đặt Timer")]
+    [Tooltip("Thời gian đếm ngược (giây) - có thể set khác nhau cho mỗi level")]
+    public float timeLimit = 60f;
     private float currentTime;
     private bool isTimerRunning = false;
     private bool hasExpired = false;

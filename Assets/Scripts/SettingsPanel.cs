@@ -5,45 +5,65 @@ using System.Collections.Generic;
 
 public class SettingsPanel : MonoBehaviour
 {
+    [Header("UI Panel")]
+    [Tooltip("GameObject panel chứa toàn bộ settings UI")]
     public GameObject settingsPanel;
     
-    // Volume sliders
+    [Header("Volume Sliders")]
+    [Tooltip("Slider điều chỉnh volume nhạc")]
     public Slider musicVolumeSlider;
+    [Tooltip("Slider điều chỉnh volume SFX")]
     public Slider sfxVolumeSlider;
     
-    // Volume toggle buttons
+    [Header("Volume Toggle Buttons")]
+    [Tooltip("Button để bật/tắt nhạc")]
     public Button musicVolumeButton;
+    [Tooltip("Button để bật/tắt SFX")]
     public Button sfxVolumeButton;
     
-    // Mute overlay images (diagonal slash) - assign these in Unity Inspector
+    [Header("Mute Overlays")]
+    [Tooltip("Image overlay hiển thị khi nhạc bị tắt (dấu gạch chéo)")]
     public Image musicMuteOverlay;
+    [Tooltip("Image overlay hiển thị khi SFX bị tắt (dấu gạch chéo)")]
     public Image sfxMuteOverlay;
     
-    // Text labels
+    [Header("Volume Text Labels")]
+    [Tooltip("Text hiển thị phần trăm volume nhạc")]
     public TMP_Text musicVolumeText;
+    [Tooltip("Text hiển thị phần trăm volume SFX")]
     public TMP_Text sfxVolumeText;
     
-    // Username settings
-    public TMP_Text usernameLabel; // Label "User name:"
-    public TMP_InputField usernameInputField; // Input field để nhập username
-    public Button usernameDoneButton; // Nút Done để lưu username
+    [Header("Username Settings")]
+    [Tooltip("Label hiển thị 'User name:'")]
+    public TMP_Text usernameLabel;
+    [Tooltip("Input field để nhập username")]
+    public TMP_InputField usernameInputField;
+    [Tooltip("Nút Done để lưu username")]
+    public Button usernameDoneButton;
     
-    // Avatar selection settings
     [System.Serializable]
     public class AvatarOption
     {
-        public Button avatarButton; // Button để click chọn avatar (chứa toàn bộ avatar structure)
-        public Sprite avatarSprite; // Sprite của avatar
-        public Image checkmark; // Dấu tích màu xanh (hiển thị khi được chọn)
+        [Tooltip("Button để click chọn avatar")]
+        public Button avatarButton;
+        [Tooltip("Sprite của avatar")]
+        public Sprite avatarSprite;
+        [Tooltip("Dấu tích màu xanh (hiển thị khi được chọn)")]
+        public Image checkmark;
         
         // Cached components (tự động tìm, không cần gán)
         [System.NonSerialized]
-        public Image avatarImage; // Image hiển thị avatar sprite (tự động tìm)
+        public Image avatarImage;
     }
     
-    public TMP_Text avatarLabel; // Label "Avatar:" hoặc "Select Avatar:"
-    public List<AvatarOption> avatarOptions = new List<AvatarOption>(); // Danh sách các avatar options
+    [Header("Avatar Selection Settings")]
+    [Tooltip("Label hiển thị 'Avatar:'")]
+    public TMP_Text avatarLabel;
+    [Tooltip("Danh sách các avatar options")]
+    public List<AvatarOption> avatarOptions = new List<AvatarOption>();
     
+    [Header("Close Button")]
+    [Tooltip("Button để đóng settings panel")]
     public Button closeButton;
     
     private float musicVolume = 1f;

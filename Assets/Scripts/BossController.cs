@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    [Header("Cài Đặt Spawn Đạn")]
+    [Tooltip("Danh sách các điểm spawn đạn")]
     public Transform[] ammoPoints;
 
+    [Tooltip("Prefab của ammo pickup để spawn")]
     public GameObject ammoPickup;
 
+    [Tooltip("Thời gian giữa các lần spawn đạn (giây)")]
     public float ammoSpawnTime;
     private float ammoCounter;
 
+    [Header("Cài Đặt Kiểm Tra")]
+    [Tooltip("Khoảng thời gian kiểm tra xem boss đã bị đánh bại chưa (giây)")]
     public float checkInterval;
     private float checkCounter;
 
+    [Header("Cài Đặt Exit")]
+    [Tooltip("GameObject level exit (sẽ được kích hoạt khi boss chết)")]
     public GameObject levelExit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

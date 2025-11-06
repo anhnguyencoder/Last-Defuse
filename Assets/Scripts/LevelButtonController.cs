@@ -4,13 +4,18 @@ using UnityEngine.UI;
 [System.Serializable]
 public class LevelButtonData
 {
+    [Tooltip("Tên scene của level")]
     public string levelSceneName;
+    [Tooltip("Button để load level")]
     public Button button;
+    [Tooltip("GameObject overlay hiển thị khi level bị khóa")]
     public GameObject lockOverlay;
 }
 
 public class LevelButtonController : MonoBehaviour
 {
+    [Header("Danh Sách Level Buttons")]
+    [Tooltip("Mảng các button level với thông tin unlock/lock")]
     public LevelButtonData[] levelButtons;
 
     private void Start()

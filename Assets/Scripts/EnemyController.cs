@@ -4,39 +4,63 @@ public class EnemyController : MonoBehaviour
 {
     private PlayerController player;
 
+    [Header("Cài Đặt Di Chuyển")]
+    [Tooltip("Tốc độ di chuyển của enemy")]
     public float moveSpeed;
 
+    [Tooltip("Rigidbody component của enemy (tự động tìm nếu để trống)")]
     public Rigidbody theRB;
 
-    public float chaseRange = 15f, stopCloseRange = 4f;
+    [Tooltip("Khoảng cách để enemy bắt đầu đuổi theo player")]
+    public float chaseRange = 15f;
+    [Tooltip("Khoảng cách tối thiểu để enemy dừng lại và bắn (không tiến gần hơn)")]
+    public float stopCloseRange = 4f;
 
     private float strafeAmount;
 
+    [Header("Cài Đặt Hoạt Hình")]
+    [Tooltip("Animator component của enemy")]
     public Animator anim;
 
+    [Header("Cài Đặt Tuần Tra")]
+    [Tooltip("Danh sách các điểm tuần tra (patrol points)")]
     public Transform[] patrolPoints;
 
     [HideInInspector]
     public int currentPatrolPoint;
+    [Tooltip("GameObject chứa các điểm tuần tra (sẽ được tách ra khỏi parent)")]
     public Transform pointsHolder;
 
+    [Tooltip("Thời gian chờ tại mỗi điểm tuần tra (giây)")]
     public float pointWaitTime = 3f;
     private float waitCounter;
 
     private bool isDead;
 
+    [Header("Cài Đặt Máu")]
+    [Tooltip("Máu hiện tại của enemy")]
     public float currentHealth = 25f;
+    [Tooltip("Máu ban đầu của enemy")]
     public float startingHealth = 25f;
 
+    [Tooltip("Thời gian chờ trước khi enemy biến mất sau khi chết (giây)")]
     public float waitToDisappear = 4f;
 
+    [Header("Cài Đặt Bắn")]
+    [Tooltip("Điểm spawn projectile (nơi bắn ra đạn)")]
     public Transform shootPoint;
+    [Tooltip("Prefab của projectile để bắn")]
     public EnemyProjectile projectile;
+    [Tooltip("Khoảng thời gian giữa các lần bắn (giây)")]
     public float timeBetweenShots;
     private float shotCounter;
+    [Tooltip("Sát thương của mỗi viên đạn")]
     public float shotDamage;
 
+    [Header("Cài Đặt Chia Đôi Khi Chết")]
+    [Tooltip("Enemy có chia thành 2 enemy nhỏ hơn khi chết không?")]
     public bool splitOnDeath;
+    [Tooltip("Kích thước tối thiểu để enemy có thể chia đôi (nhỏ hơn sẽ không chia)")]
     public float minSize = .4f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

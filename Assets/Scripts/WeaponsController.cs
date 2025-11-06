@@ -2,33 +2,57 @@ using UnityEngine;
 
 public class WeaponsController : MonoBehaviour
 {
+    [Header("Cài Đặt Tầm Bắn")]
+    [Tooltip("Tầm bắn của vũ khí")]
     public float range;
 
+    [Header("Tham Chiếu")]
+    [Tooltip("Transform của camera (điểm bắn)")]
     public Transform cam;
 
+    [Tooltip("Layer mask cho các object hợp lệ để bắn")]
     public LayerMask validLayers;
 
-    public GameObject impactEffect, damageEffect;
+    [Header("Hiệu Ứng")]
+    [Tooltip("Hiệu ứng khi bắn trúng môi trường")]
+    public GameObject impactEffect;
+    [Tooltip("Hiệu ứng khi bắn trúng enemy")]
+    public GameObject damageEffect;
 
+    [Header("Muzzle Flare")]
+    [Tooltip("GameObject hiển thị lửa nòng súng")]
     public GameObject muzzleFlare;
 
+    [Tooltip("Thời gian hiển thị muzzle flare (giây)")]
     public float flareDisplayTime = .1f;
     private float flareCounter;
 
+    [Header("Cài Đặt Bắn")]
+    [Tooltip("Có thể bắn tự động không? (giữ chuột để bắn liên tục)")]
     public bool canAutoFire;
+    [Tooltip("Thời gian giữa các lần bắn (giây)")]
     public float timeBetweenShots = .1f;
     private float shotCounter;
 
+    [Header("Cài Đặt Đạn")]
+    [Tooltip("Số đạn hiện tại trong băng")]
     public int currentAmmo = 100;
+    [Tooltip("Sức chứa của băng đạn")]
     public int clipSize = 15;
+    [Tooltip("Số đạn còn lại trong kho")]
     public int remainingAmmo = 300;
 
     private UIController UIcon;
 
+    [Tooltip("Số đạn nhận được khi nhặt ammo pickup")]
     public int pickupAmount;
 
+    [Header("Cài Đặt Sát Thương")]
+    [Tooltip("Sát thương mỗi viên đạn")]
     public float damageAmount = 15f;
 
+    [Header("Danh Sách Vũ Khí")]
+    [Tooltip("Mảng các vũ khí có thể sử dụng")]
     public Weapon[] weapons;
 
     private int currentWeapon, previousWeapon;

@@ -9,6 +9,8 @@ public class PlayerHealthController : MonoBehaviour
         instance = this;
     }
 
+    [Header("Cài Đặt Máu")]
+    [Tooltip("Máu tối đa của player")]
     public float maxHealth = 100f;
     private float currentHealth;
 

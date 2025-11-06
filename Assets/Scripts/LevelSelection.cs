@@ -3,8 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelection : MonoBehaviour
 {
+    [Header("Cài Đặt Scene")]
+    [Tooltip("Tên scene main menu để quay lại")]
     public string mainMenuScene;
 
+    [Header("Tham Chiếu Component")]
+    [Tooltip("LevelButtonController component để quản lý các nút level")]
     public LevelButtonController levelButtonController;
 
     private void Start()

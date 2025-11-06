@@ -3,10 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
+    [Header("Cài Đặt Scene")]
+    [Tooltip("Tên scene main menu")]
     public string mainMenuScene;
 
+    [Tooltip("Tên scene level selection")]
     public string levelSelectionScene;
 
+    [Header("UI References")]
+    [Tooltip("Button để load level tiếp theo (sẽ tự động ẩn nếu không có level tiếp theo)")]
     public UnityEngine.UI.Button nextLevelButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

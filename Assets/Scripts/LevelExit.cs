@@ -5,7 +5,10 @@ public class LevelExit : MonoBehaviour
 {
     public static LevelExit instance;
 
+    [Header("Cài Đặt Scene")]
+    [Tooltip("Tên scene để load khi player thắng (ví dụ: WinScene)")]
     public string winScene;
+    [Tooltip("Tên level tiếp theo để unlock sau khi hoàn thành level này")]
     public string nextLevel;
 
     [Header("Warning Sound Settings")]

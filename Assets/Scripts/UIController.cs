@@ -13,25 +13,44 @@ public class UIController : MonoBehaviour
         instance = this;
     }
 
-    public TMP_Text ammoText, remainingAmmoText;
+    [Header("UI Text - Đạn")]
+    [Tooltip("Text hiển thị số đạn hiện tại trong băng")]
+    public TMP_Text ammoText;
+    [Tooltip("Text hiển thị số đạn còn lại trong kho")]
+    public TMP_Text remainingAmmoText;
 
+    [Header("UI Text - Timer")]
+    [Tooltip("Text hiển thị thời gian còn lại")]
     public TMP_Text timerText;
-    public Image timerIcon; // Icon cạnh timer text
+    [Tooltip("Icon hiển thị cạnh timer text")]
+    public Image timerIcon;
 
+    [Header("Các Màn Hình")]
+    [Tooltip("GameObject màn hình hiển thị khi player chết")]
     public GameObject deathScreen;
 
+    [Header("Cài Đặt Scene")]
+    [Tooltip("Tên scene main menu")]
     public string mainMenuScene;
 
+    [Tooltip("Tên scene level selection")]
     public string levelSelectionScene;
 
+    [Header("Cài Đặt Pause")]
+    [Tooltip("GameObject màn hình pause")]
     public GameObject pauseScreen;
 
+    [Tooltip("Input action để pause/unpause game")]
     public InputActionReference pauseAction;
 
+    [Header("Tham Chiếu Component")]
+    [Tooltip("SettingsPanel component")]
     public SettingsPanel settingsPanel;
     
+    [Tooltip("PlayerUnitFrame component (hiển thị máu, avatar, username)")]
     public PlayerUnitFrame playerUnitFrame;
 
+    [Tooltip("EnemyKillDisplay component (hiển thị số enemy đã tiêu diệt)")]
     public EnemyKillDisplay enemyKillDisplay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

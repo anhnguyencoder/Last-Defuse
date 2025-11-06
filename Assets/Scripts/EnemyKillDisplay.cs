@@ -5,12 +5,16 @@ using UnityEngine.UI;
 public class EnemyKillDisplay : MonoBehaviour
 {
     [Header("UI References")]
+    [Tooltip("Text hiển thị số enemy đã tiêu diệt")]
     public TMP_Text killCountText;
+    [Tooltip("Image icon của enemy")]
     public Image enemyIcon;
+    [Tooltip("Image frame/khung")]
     public Image frameImage;
 
     [Header("Settings")]
-    public string killCountFormat = "{0}"; // Format cho text, ví dụ: "Kills: {0}" hoặc chỉ "{0}"
+    [Tooltip("Format cho text hiển thị số kill (ví dụ: 'Kills: {0}' hoặc chỉ '{0}')")]
+    public string killCountFormat = "{0}";
 
     private void Start()
     {

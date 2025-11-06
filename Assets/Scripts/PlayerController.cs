@@ -11,38 +11,73 @@ public class PlayerController : MonoBehaviour
         instance = this;
     }
 
+    [Header("Cài Đặt Di Chuyển")]
+    [Tooltip("CharacterController component của player")]
     public CharacterController charCon;
+    [Tooltip("Tốc độ di chuyển bình thường")]
     public float moveSpeed;
 
+    [Header("Input Actions")]
+    [Tooltip("Input action cho di chuyển")]
     public InputActionReference moveAction;
 
     private Vector3 currentMovement;
 
+    [Tooltip("Input action cho nhìn/xoay camera")]
     public InputActionReference lookAction;
     private Vector2 rotStore;
+    [Tooltip("Tốc độ xoay camera/look sensitivity")]
     public float lookSpeed;
 
+    [Header("Cài Đặt Camera")]
+    [Tooltip("Camera của player")]
     public Camera theCam;
 
-    public float minViewAngle, maxViewAngle;
+    [Tooltip("Góc nhìn tối thiểu (hướng xuống)")]
+    public float minViewAngle;
+    [Tooltip("Góc nhìn tối đa (hướng lên)")]
+    public float maxViewAngle;
 
+    [Header("Cài Đặt Nhảy")]
+    [Tooltip("Input action cho nhảy")]
     public InputActionReference jumpAction;
+    [Tooltip("Lực nhảy")]
     public float jumpPower;
+    [Tooltip("Hệ số điều chỉnh trọng lực")]
     public float gravityModifier = 4f;
 
+    [Header("Cài Đặt Chạy")]
+    [Tooltip("Tốc độ khi chạy (sprint)")]
     public float runSpeed;
+    [Tooltip("Input action cho chạy")]
     public InputActionReference sprintAction;
 
-    public float camZoomNormal, camZoomOut, camZoomSpeed;
+    [Header("Cài Đặt Zoom Camera")]
+    [Tooltip("FOV bình thường của camera")]
+    public float camZoomNormal;
+    [Tooltip("FOV khi chạy (zoom out)")]
+    public float camZoomOut;
+    [Tooltip("Tốc độ chuyển đổi FOV")]
+    public float camZoomSpeed;
 
+    [Header("Cài Đặt Vũ Khí")]
+    [Tooltip("WeaponsController component")]
     public WeaponsController weaponCon;
+    [Tooltip("Input action cho bắn")]
     public InputActionReference shootAction;
 
+    [Tooltip("Input action cho nạp đạn")]
     public InputActionReference reloadAction;
 
+    [Header("Trạng Thái")]
+    [Tooltip("Player đã chết chưa?")]
     public bool isDead;
 
-    public InputActionReference nextWeapon, prevWeapon;
+    [Header("Chuyển Đổi Vũ Khí")]
+    [Tooltip("Input action cho vũ khí tiếp theo")]
+    public InputActionReference nextWeapon;
+    [Tooltip("Input action cho vũ khí trước đó")]
+    public InputActionReference prevWeapon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
