@@ -7619,7 +7619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870391d67c5de534e948094971142214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 60
+  timeLimit: 12
 --- !u!4 &1799445202
 Transform:
   m_ObjectHideFlags: 0

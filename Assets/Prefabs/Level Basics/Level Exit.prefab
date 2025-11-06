@@ -5075,7 +5075,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874e2688194405a41a48ca3c7800eade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Test 1
+  winScene: 
+  nextLevel: 
+  warningSound: {fileID: 8300000, guid: 1aec881a399768d4bad02b0c41d13660, type: 3}
+  minDistance: 5
+  maxDistance: 50
+  maxVolume: 1
+  loopWarningSound: 1
 --- !u!1 &9083786028978689690
 GameObject:
   m_ObjectHideFlags: 0
