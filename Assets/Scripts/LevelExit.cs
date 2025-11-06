@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
+    public static LevelExit instance;
+
     public string winScene;
     public string nextLevel;
 
@@ -22,6 +24,19 @@ public class LevelExit : MonoBehaviour
     private bool isWarningActive = false;
     private float warningThreshold = 10f; // Phát khi còn 10 giây
 
+    [Header("Progress Bar Settings")]
+    [Tooltip("Khoảng cách để bắt đầu progress bar")]
+    public float progressRange = 5f;
+    [Tooltip("Player hiện tại có trong range không?")]
+    private bool playerInRange = false;
+
+    private ExitProgressBar progressBar;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         // Tạo AudioSource nếu chưa có
@@ -40,36 +55,99 @@ public class LevelExit : MonoBehaviour
         audioSource.volume = maxVolume;
         audioSource.playOnAwake = false;
         audioSource.loop = loopWarningSound;
+
+        // Tìm ExitProgressBar trong scene (tự động tìm, không cần kéo vào Inspector)
+        FindProgressBar();
+    }
+
+    private void FindProgressBar()
+    {
+        // Tìm ExitProgressBar trong scene
+        progressBar = ExitProgressBar.instance;
+        
+        if (progressBar == null)
+        {
+            // Nếu không tìm thấy qua instance, thử tìm bằng FindObjectOfType
+            progressBar = FindFirstObjectByType<ExitProgressBar>();
+        }
+
+        if (progressBar == null)
+        {
+            Debug.LogWarning("Không tìm thấy ExitProgressBar trong scene! Progress bar sẽ không hoạt động.");
+        }
+        else
+        {
+            Debug.Log("Đã tìm thấy ExitProgressBar!");
+        }
     }
 
     private void Update()
     {
-        if (CountdownTimer.instance == null)
-            return;
-
-        float currentTime = CountdownTimer.instance.GetCurrentTime();
-        bool shouldPlayWarning = currentTime <= warningThreshold && currentTime > 0;
-
-        if (shouldPlayWarning && !isWarningActive)
+        // Kiểm tra timer và warning sound
+        if (CountdownTimer.instance != null)
         {
-            // Bắt đầu phát âm thanh cảnh báo
-            PlayWarningSound();
-            isWarningActive = true;
-        }
-        else if (!shouldPlayWarning && isWarningActive)
-        {
-            // Dừng âm thanh khi hết thời gian hoặc timer đã dừng
+            float currentTime = CountdownTimer.instance.GetCurrentTime();
+            bool shouldPlayWarning = currentTime <= warningThreshold && currentTime > 0;
+
+            if (shouldPlayWarning && !isWarningActive)
+            {
+                // Bắt đầu phát âm thanh cảnh báo
+                PlayWarningSound();
+                isWarningActive = true;
+            }
+            else if (!shouldPlayWarning && isWarningActive)
+            {
+                // Dừng âm thanh khi hết thời gian hoặc timer đã dừng
+                if (audioSource != null && audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                isWarningActive = false;
+            }
+
+            // Cập nhật volume dựa trên khoảng cách từ player (liên tục)
             if (audioSource != null && audioSource.isPlaying)
             {
-                audioSource.Stop();
+                UpdateVolumeBasedOnDistance();
             }
-            isWarningActive = false;
         }
 
-        // Cập nhật volume dựa trên khoảng cách từ player (liên tục)
-        if (audioSource != null && audioSource.isPlaying)
+        // Kiểm tra player trong range để bắt đầu progress bar
+        if (PlayerController.instance != null && !PlayerController.instance.isDead)
         {
-            UpdateVolumeBasedOnDistance();
+            float distance = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
+            bool inRange = distance <= progressRange;
+
+            if (inRange && !playerInRange)
+            {
+                // Player mới vào range
+                playerInRange = true;
+                if (progressBar != null)
+                {
+                    progressBar.StartProgress();
+                }
+            }
+            else if (!inRange && playerInRange)
+            {
+                // Player ra khỏi range
+                playerInRange = false;
+                if (progressBar != null)
+                {
+                    progressBar.StopProgress();
+                }
+            }
+        }
+        else
+        {
+            // Player đã chết hoặc không tồn tại
+            if (playerInRange)
+            {
+                playerInRange = false;
+                if (progressBar != null)
+                {
+                    progressBar.StopProgress();
+                }
+            }
         }
     }
 
@@ -122,38 +200,61 @@ public class LevelExit : MonoBehaviour
         }
     }
 
+    public void OnProgressComplete()
+    {
+        // Khi progress bar đầy, player thắng
+        WinLevel();
+    }
+
+    private void WinLevel()
+    {
+        // Dừng timer khi player thắng
+        if (CountdownTimer.instance != null)
+        {
+            CountdownTimer.instance.StopTimer();
+        }
+
+        // Dừng warning sound nếu đang phát
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        // Dừng progress bar
+        if (progressBar != null)
+        {
+            progressBar.StopProgress();
+        }
+
+        // Save current level info and next level before loading win scene
+        string currentLevel = SceneManager.GetActiveScene().name;
+        LevelManager.SetCurrentLevel(currentLevel);
+        LevelManager.SetNextLevel(nextLevel);
+
+        // Unlock next level when player completes current level
+        if (!string.IsNullOrEmpty(nextLevel))
+        {
+            LevelManager.UnlockLevel(nextLevel);
+            Debug.Log("Unlocked level: " + nextLevel + " after completing: " + currentLevel);
+        }
+
+        // Load win scene when player completes the level
+        SceneManager.LoadScene(winScene);
+
+        AudioManager.instance.PlaySFX(3);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        // Giữ lại trigger cũ để tương thích ngược (nếu cần)
+        // Nhưng giờ sẽ dùng progress bar thay vì trigger trực tiếp
         if(other.tag == "Player")
         {
-            // Dừng timer khi player thắng
-            if (CountdownTimer.instance != null)
+            // Nếu không có progress bar, dùng cách cũ
+            if (progressBar == null)
             {
-                CountdownTimer.instance.StopTimer();
+                WinLevel();
             }
-
-            // Dừng warning sound nếu đang phát
-            if (audioSource != null && audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-
-            // Save current level info and next level before loading win scene
-            string currentLevel = SceneManager.GetActiveScene().name;
-            LevelManager.SetCurrentLevel(currentLevel);
-            LevelManager.SetNextLevel(nextLevel);
-
-            // Unlock next level when player completes current level
-            if (!string.IsNullOrEmpty(nextLevel))
-            {
-                LevelManager.UnlockLevel(nextLevel);
-                Debug.Log("Unlocked level: " + nextLevel + " after completing: " + currentLevel);
-            }
-
-            // Load win scene when player completes the level
-            SceneManager.LoadScene(winScene);
-
-            AudioManager.instance.PlaySFX(3);
         }
     }
 }

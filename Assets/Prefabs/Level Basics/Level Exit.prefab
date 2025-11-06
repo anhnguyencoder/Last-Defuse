@@ -5082,6 +5082,7 @@ MonoBehaviour:
   maxDistance: 50
   maxVolume: 1
   loopWarningSound: 1
+  progressRange: 3
 --- !u!1 &9083786028978689690
 GameObject:
   m_ObjectHideFlags: 0
