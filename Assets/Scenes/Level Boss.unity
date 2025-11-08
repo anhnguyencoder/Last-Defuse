@@ -22235,6 +22235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RP_MAP_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8771091787928289351, guid: f54388d384d750f4893577237e9ba91a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5316342638311548477, guid: f54388d384d750f4893577237e9ba91a, type: 3}
