@@ -1329,7 +1329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -3157,7 +3157,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -6762,7 +6762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -6981,7 +6981,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -9071,7 +9071,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -15780,7 +15780,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: chaseRange
-      value: 150
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3259425102744745245, guid: fc9ada75d039af044b737bd340c4d0b7, type: 3}
       propertyPath: patrolPoints.Array.size
