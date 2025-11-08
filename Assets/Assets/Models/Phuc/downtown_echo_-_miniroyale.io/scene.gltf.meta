@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 54fd025c065f2f2458d270cb35092496
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 2
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\scene.bin
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\scene.bin
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_specularf0.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_specularf0.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_1_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_1_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_2_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_2_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_3_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_3_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_4_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_4_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_5_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_5_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_6_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_6_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_6_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_6_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_7_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_7_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_7_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_7_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_8_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_8_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_8_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_8_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_9_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_9_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_9_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_9_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_10_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_10_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_10_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_10_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_11_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_11_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_11_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_11_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_12_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_12_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_12_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_12_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_13_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_13_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_14_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_14_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_16_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_16_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_19_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_19_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_19_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_19_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_20_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_20_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_21_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_21_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_22_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_22_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_23_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_23_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_23_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_23_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_24_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_24_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_25_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_25_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_26_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_26_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_27_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_27_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_27_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_27_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_28_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_28_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_29_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_29_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_30_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_30_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_31_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_31_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_32_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_32_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_32_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_32_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_33_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_33_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_33_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_33_emissive.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_34_baseColor.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_34_baseColor.png
+  - type: 1
+    originalUri: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_34_emissive.png
+    assetPath: Assets\Assets\Models\Phuc\downtown_echo_-_miniroyale.io\textures\material_34_emissive.png
+  reportItems:
+  - type: 2
+    code: 20
+    messages:
+    - KHR_materials_specular
+  - type: 2
+    code: 20
+    messages:
+    - KHR_materials_emissive_strength

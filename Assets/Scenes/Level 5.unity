@@ -19552,7 +19552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870391d67c5de534e948094971142214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 60
+  timeLimit: 80
 --- !u!4 &1189002503
 Transform:
   m_ObjectHideFlags: 0
@@ -25287,7 +25287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5499089766232708863, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
       propertyPath: nextLevel
-      value: 
+      value: Level 6
       objectReference: {fileID: 0}
     - target: {fileID: 5499089766232708863, guid: ad22684f22ce65143b08bd5dc162e79b, type: 3}
       propertyPath: sceneToLoad

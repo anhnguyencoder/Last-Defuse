@@ -1,0 +1,11 @@
+Model Information:
+* title:	Downtown Echo - miniroyale.io
+* source:	https://sketchfab.com/3d-models/downtown-echo-miniroyaleio-79a2c6382cbe4e39905e0653d19dec57
+* author:	zct_33 (https://sketchfab.com/zct_33)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Downtown Echo - miniroyale.io" (https://sketchfab.com/3d-models/downtown-echo-miniroyaleio-79a2c6382cbe4e39905e0653d19dec57) by zct_33 (https://sketchfab.com/zct_33) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
